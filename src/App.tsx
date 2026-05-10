@@ -24,6 +24,31 @@ export default function App() {
     { id: "contact", name: "Contact" },
   ];
 
+  const [activeSection, setActiveSection] = useState("profile");
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    navLinks.forEach((link) => {
+      const element = document.getElementById(link.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleDownloadCV = () => {
     const doc = new jsPDF();
 
@@ -117,19 +142,24 @@ export default function App() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     doc.text(
-      "Diplôme d'Ingénieur Informatique - EMSI Casablanca (Spécialité MIAGE)",
+      "Certification Power BI Data Analyst Associate (PL-300) - Microsoft",
       20,
       225,
     );
     doc.text(
-      "Technicien Spécialisé en Développement - ISTA Casablanca",
+      "Diplôme d'Ingénieur Informatique - EMSI Casablanca (Spécialité MIAGE)",
       20,
       232,
     );
     doc.text(
-      "Baccalauréat Scientifique (Option SVT) - Lycée Abderrahmane Belkorchi",
+      "Technicien Spécialisé en Développement - ISTA Casablanca",
       20,
       239,
+    );
+    doc.text(
+      "Baccalauréat Scientifique (Option SVT) - Lycée Abderrahmane Belkorchi",
+      20,
+      246,
     );
 
     doc.save("CV_Wafaa_Jemel.pdf");
@@ -182,7 +212,60 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800">
+    <div className="min-h-screen bg-white font-sans text-slate-800 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
+        <svg
+          className="absolute top-[10%] -right-20 opacity-[0.03] text-blue-600"
+          width="600"
+          height="600"
+          viewBox="0 0 100 100"
+        >
+          <circle cx="50" cy="50" r="40" fill="currentColor" />
+          <line
+            x1="10"
+            y1="50"
+            x2="90"
+            y2="50"
+            stroke="currentColor"
+            strokeWidth="0.5"
+          />
+          <line
+            x1="50"
+            y1="10"
+            x2="50"
+            y2="90"
+            stroke="currentColor"
+            strokeWidth="0.5"
+          />
+        </svg>
+        <svg
+          className="absolute bottom-[20%] -left-20 opacity-[0.05] text-slate-400 rotate-12"
+          width="400"
+          height="400"
+          viewBox="0 0 100 100"
+        >
+          <path
+            d="M0 50 Q25 20 50 50 T100 50"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <path
+            d="M0 60 Q25 30 50 60 T100 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <path
+            d="M0 70 Q25 40 50 70 T100 70"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+        </svg>
+      </div>
+
       {/* Navigation Fixée */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-50">
         <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center text-slate-900">
@@ -201,9 +284,20 @@ export default function App() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors"
+                className={`text-[10px] font-bold uppercase tracking-widest transition-all relative py-2 ${
+                  activeSection === link.id
+                    ? "text-blue-600"
+                    : "text-slate-400 hover:text-blue-600"
+                }`}
               >
                 {link.name}
+                {activeSection === link.id && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-600"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -226,13 +320,13 @@ export default function App() {
                 className="w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] saturate-[1.1]"
                 onError={(e) =>
                   ((e.target as HTMLImageElement).src =
-                    "img/wj-removebg-preview.png")
+                    "src/assetsgit init/wj-removebg-preview.png")
                 }
               />
             </div>
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-4xl md:text-6xl font-black mb-2 text-slate-900 tracking-tighter">
-                Wafaa Jemel
+                Wafaa JEMEL
               </h1>
               <p className="text-sm font-bold text-blue-600 mb-6 uppercase tracking-[0.3em]">
                 BI Data Analyst | Power BI
@@ -363,6 +457,11 @@ export default function App() {
           <div className="space-y-12">
             {[
               {
+                title: "Certification Power BI Data Analyst Associate (PL-300)",
+                school: "Microsoft",
+                desc: "Validation des compétences en préparation, modélisation, visualisation et analyse des données avec Power BI.",
+              },
+              {
                 title: "Diplôme d'Ingénieur Informatique",
                 school: "EMSI Casablanca",
                 desc: "Option MIAGE - Spécialisation en gestion de données et informatique décisionnelle.",
@@ -413,8 +512,8 @@ export default function App() {
               Discutons de vos projets.
             </h2>
             <p className="text-slate-500 mb-10 text-sm">
-              Passionnée par les données et toujours prête à relever de nouveaux
-              défis. Échangeons sur vos futurs projets !
+              "Passionnée par les données et toujours prête à relever de
+              nouveaux défis. Échangeons sur vos futurs projets !"
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-12 font-bold text-xs uppercase tracking-widest text-slate-400">
               <a
@@ -451,7 +550,7 @@ export default function App() {
             className="text-center"
           >
             <h1 className="text-3xl md:text-5xl font-light mb-4 tracking-tighter">
-              Wafaa <span> </span>JEMEL
+              Wafaa Jemel
             </h1>
             <p className="text-blue-400 font-mono text-sm mb-12 uppercase tracking-widest">
               BI Data Analyst Portfolio
