@@ -315,9 +315,9 @@ export default function App() {
           >
             <div className="w-40 h-40 md:w-48 md:h-48 shrink-0 rounded-full overflow-hidden border-4 border-white shadow-lg ring-1 ring-slate-100">
               <img
-                src={`${import.meta.env.BASE_URL}profile.webp`}
+                src="/MyPortfolio/profile.webp"
                 alt="Wafaa Jemel"
-                className="w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] saturate-[1.1]"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="flex-1 text-center md:text-left">
