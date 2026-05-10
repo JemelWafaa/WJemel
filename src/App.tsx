@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { jsPDF } from "jspdf";
+import profile from "./assets/profile.webp";
 import {
   Mail,
   Linkedin,
@@ -315,7 +316,7 @@ export default function App() {
           >
             <div className="w-40 h-40 md:w-48 md:h-48 shrink-0 rounded-full overflow-hidden border-4 border-white shadow-lg ring-1 ring-slate-100">
               <img
-                src="./src/assets/profile.webp"
+                src={profile}
                 alt="Wafaa Jemel"
                 className="w-full h-full object-cover"
               />
