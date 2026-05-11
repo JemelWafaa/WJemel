@@ -517,7 +517,7 @@ export default function App() {
               Wafaa Jemel
             </h1>
             <p className="text-rose-500 font-mono text-sm mb-12 uppercase tracking-widest">
-              BI Data Analyst Portfolio
+              BI Data Analyst
             </p>
             <button
               onClick={startApp}
