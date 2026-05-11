@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wafaa Jemel - Portfolio Data & BI</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wafaa Jemel - BI Data Analyst</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons CDN -->
@@ -11,368 +11,636 @@
     <!-- jsPDF CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #ffffff;
-            background-image: radial-gradient(circle at 1px 1px, #f1f5f9 1px, transparent 0);
-            background-size: 32px 32px;
-        }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .nav-btn.active { color: #2563eb; border-bottom: 2px solid #2563eb; }
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          #f1f5f9 1px,
+          transparent 0
+        );
+        background-size: 32px 32px;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .nav-btn.active {
+        color: #881337;
+        border-bottom: 2px solid #881337;
+      }
     </style>
-</head>
-<body class="bg-white text-slate-800 relative overflow-hidden">
-
+  </head>
+  <body class="bg-white text-slate-800 relative overflow-hidden">
     <!-- Decorative Background Elements -->
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10 bg-white">
-        <div class="fixed inset-0" style="background-image: radial-gradient(circle at 1px 1px, #f1f5f9 2px, transparent 0); background-size: 32px 32px;"></div>
-        <svg class="absolute top-[10%] -right-20 opacity-[0.03] text-blue-600" width="600" height="600" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" fill="currentColor" />
-            <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.5" />
-            <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.5" />
-        </svg>
-        <svg class="absolute bottom-[20%] -left-20 opacity-[0.05] text-slate-400 rotate-12" width="400" height="400" viewBox="0 0 100 100">
-            <path d="M0 50 Q25 20 50 50 T100 50" fill="none" stroke="currentColor" stroke-width="1" />
-            <path d="M0 60 Q25 30 50 60 T100 60" fill="none" stroke="currentColor" stroke-width="1" />
-            <path d="M0 70 Q25 40 50 70 T100 70" fill="none" stroke="currentColor" stroke-width="1" />
-        </svg>
+    <div
+      class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10 bg-white"
+    >
+      <div
+        class="fixed inset-0"
+        style="
+          background-image: radial-gradient(
+            circle at 1px 1px,
+            #f1f5f9 2px,
+            transparent 0
+          );
+          background-size: 32px 32px;
+        "
+      ></div>
+      <svg
+        class="absolute top-[10%] -right-20 opacity-[0.03] text-rose-800"
+        width="600"
+        height="600"
+        viewBox="0 0 100 100"
+      >
+        <circle cx="50" cy="50" r="40" fill="currentColor" />
+        <line
+          x1="10"
+          y1="50"
+          x2="90"
+          y2="50"
+          stroke="currentColor"
+          stroke-width="0.5"
+        />
+        <line
+          x1="50"
+          y1="10"
+          x2="50"
+          y2="90"
+          stroke="currentColor"
+          stroke-width="0.5"
+        />
+      </svg>
+      <svg
+        class="absolute bottom-[20%] -left-20 opacity-[0.05] text-slate-400 rotate-12"
+        width="400"
+        height="400"
+        viewBox="0 0 100 100"
+      >
+        <path
+          d="M0 50 Q25 20 50 50 T100 50"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+        <path
+          d="M0 60 Q25 30 50 60 T100 60"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+        <path
+          d="M0 70 Q25 40 50 70 T100 70"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        />
+      </svg>
     </div>
 
     <!-- Splash Screen -->
-    <div id="splash" class="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center text-white px-6 transition-opacity duration-500">
-        <div class="text-center opacity-0 transform translate-y-5 transition-all duration-700" id="splash-content">
-            <h1 class="text-3xl md:text-5xl font-light mb-4 tracking-tighter">Wafaa Jemel</h1>
-            <p class="text-blue-400 font-mono text-[10px] mb-12 uppercase tracking-widest">BI Data Analyst Portfolio</p>
-            <button id="enter-btn" class="bg-white text-slate-900 px-12 py-4 rounded-full font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-500 shadow-2xl ring-8 ring-white/10">
-                Entrer
-            </button>
-        </div>
+    <div
+      id="splash"
+      class="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center text-white px-6 transition-opacity duration-500"
+    >
+      <div
+        class="text-center opacity-0 transform translate-y-5 transition-all duration-700"
+        id="splash-content"
+      >
+        <h1 class="text-3xl md:text-5xl font-light mb-4 tracking-tighter">
+          Wafaa Jemel
+        </h1>
+        <p
+          class="text-rose-500 font-mono text-[10px] mb-12 uppercase tracking-widest"
+        >
+          BI Data Analyst Portfolio
+        </p>
+        <button
+          id="enter-btn"
+          class="bg-white text-slate-900 px-12 py-4 rounded-full font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-rose-800 hover:text-white transition-all duration-500 shadow-2xl ring-8 ring-white/10"
+        >
+          Entrer
+        </button>
+      </div>
     </div>
 
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-50 py-4 z-50">
-        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center text-slate-900">
-            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="font-bold text-xl tracking-tighter">Wafaa<span class="text-blue-600">Jemel.</span></button>
-            <div class="hidden md:flex gap-8">
-                <a href="#profile" class="text-[10px] font-bold text-blue-600 uppercase tracking-widest hover:text-blue-600 transition-all pb-2 border-b-2 border-blue-600">Profil</a>
-                <a href="#skills" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-all pb-2 border-b-2 border-transparent">Compétences</a>
-                <a href="#experience" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-all pb-2 border-b-2 border-transparent">Expérience</a>
-                <a href="#formation" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-all pb-2 border-b-2 border-transparent">Formation</a>
-                <a href="#contact" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-all pb-2 border-b-2 border-transparent">Contact</a>
-            </div>
+    <nav
+      class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-50 py-4 z-50"
+    >
+      <div
+        class="max-w-4xl mx-auto px-6 flex justify-between items-center text-slate-900"
+      >
+        <button
+          onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+          class="font-bold text-xl tracking-tighter"
+        >
+          Wafaa<span class="text-rose-800">Jemel.</span>
+        </button>
+        <div class="hidden md:flex gap-8">
+          <a
+            href="#profile"
+            class="text-[10px] font-bold text-rose-800 uppercase tracking-widest hover:text-rose-800 transition-all pb-2 border-b-2 border-rose-800"
+            >Profil</a
+          >
+          <a
+            href="#skills"
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-rose-800 transition-all pb-2 border-b-2 border-transparent"
+            >Compétences</a
+          >
+          <a
+            href="#experience"
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-rose-800 transition-all pb-2 border-b-2 border-transparent"
+            >Expérience</a
+          >
+          <a
+            href="#formation"
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-rose-800 transition-all pb-2 border-b-2 border-transparent"
+            >Formation</a
+          >
+          <a
+            href="#contact"
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-rose-800 transition-all pb-2 border-b-2 border-transparent"
+            >Contact</a
+          >
         </div>
+      </div>
     </nav>
 
     <main class="max-w-4xl mx-auto px-6 pt-16 pb-32">
-        
-        <!-- Section: Profil -->
-        <section id="profile" class="py-24 min-h-[70vh] flex items-center">
-            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-14 text-center md:text-left">
-                <div class="w-40 h-40 md:w-48 md:h-48 shrink-0 rounded-full overflow-hidden border-4 border-white shadow-lg ring-1 ring-slate-100">
-                    <img src="./WhatsApp Image 2026-05-03 at 17.33.10.jpeg" alt="Wafaa Jemel" class="w-full h-full object-cover filter contrast-[1.05] brightness-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800'">
-                </div>
-                <div class="flex-1">
-                    <h1 class="text-4xl md:text-6xl font-black mb-2 text-slate-900 tracking-tighter">Wafaa Jemel</h1>
-                    <p class="text-sm font-bold text-blue-600 mb-6 uppercase tracking-[0.3em]">BI Data Analyst | Power BI</p>
-                    <p class="text-slate-500 mb-8 leading-relaxed max-w-lg text-sm md:text-base">
-                        Analyste de données spécialisée en informatique décisionnelle avec plus de 3 ans d'expérience sur Power BI, SQL et la modélisation décisionnelle.
-                    </p>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                        <a href="mailto:wafaa.jemel1805@gmail.com" class="bg-slate-900 text-white px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-blue-600 transition-all flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i> Me contacter
-                        </a>
-                        <button onclick="downloadCV()" class="border border-slate-200 px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center gap-2 cursor-pointer">
-                             <i data-lucide="download" class="w-4 h-4"></i> Télécharger CV
-                        </button>
-                    </div>
-                </div>
+      <!-- Section: Profil -->
+      <section id="profile" class="py-24 min-h-[70vh] flex items-center">
+        <div
+          class="flex flex-col md:flex-row items-center gap-10 md:gap-14 text-center md:text-left"
+        >
+          <div
+            class="w-40 h-40 md:w-48 md:h-48 shrink-0 rounded-full overflow-hidden border-4 border-white shadow-lg ring-1 ring-slate-100"
+          >
+            <img
+              src="./WhatsApp Image 2026-05-03 at 17.33.10.jpeg"
+              alt="Wafaa Jemel"
+              class="w-full h-full object-cover filter contrast-[1.05] brightness-[1.02]"
+              onerror="
+                this.src =
+                  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800'
+              "
+            />
+          </div>
+          <div class="flex-1">
+            <h1
+              class="text-4xl md:text-6xl font-black mb-2 text-slate-900 tracking-tighter"
+            >
+              Wafaa Jemel
+            </h1>
+            <p
+              class="text-sm font-bold text-rose-600 mb-6 uppercase tracking-[0.3em]"
+            >
+              BI Data Analyst | Power BI
+            </p>
+            <p
+              class="text-slate-500 mb-8 leading-relaxed max-w-lg text-sm md:text-base"
+            >
+              Analyste de données spécialisée en informatique décisionnelle avec
+              plus de 3 ans d'expérience sur Power BI, SQL et la modélisation
+              décisionnelle.
+            </p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+              <a
+                href="mailto:wafaa.jemel1805@gmail.com"
+                class="bg-slate-900 text-white px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-rose-600 transition-all flex items-center gap-2"
+              >
+                <i data-lucide="mail" class="w-4 h-4"></i> Me contacter
+              </a>
+              <button
+                onclick="downloadCV()"
+                class="border border-slate-200 px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="download" class="w-4 h-4"></i> Télécharger CV
+              </button>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Section: Compétences -->
-        <section id="skills" class="py-24 border-t border-slate-50 text-[10px] font-bold uppercase tracking-widest">
-            <div class="flex items-center gap-3 mb-16">
-                <div class="w-8 h-[2px] bg-blue-600"></div>
-                <h2 class="text-xs font-black uppercase tracking-widest text-slate-400">Compétences</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center tracking-widest">
-                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
-                    <i data-lucide="database" class="text-blue-600 w-8 h-8 mx-auto mb-6"></i>
-                    <h3 class="font-bold text-lg mb-3 tracking-normal">Bases de données</h3>
-                    <p class="text-slate-400 text-[9px] leading-relaxed">SQL Server, PostgreSQL, Modélisation.</p>
-                </div>
-                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
-                    <i data-lucide="bar-chart" class="text-blue-600 w-8 h-8 mx-auto mb-6"></i>
-                    <h3 class="font-bold text-lg mb-3 tracking-normal">BI & Visualization</h3>
-                    <p class="text-slate-400 text-[9px] leading-relaxed">Power BI, DAX, Qlik Sense.</p>
-                </div>
-                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
-                    <i data-lucide="file-spreadsheet" class="text-blue-600 w-8 h-8 mx-auto mb-6"></i>
-                    <h3 class="font-bold text-lg mb-3 tracking-normal">Data Engineering</h3>
-                    <p class="text-slate-400 text-[9px] leading-relaxed">ETL (SSIS), DataWarehouse, Excel VBA.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Section: Compétences -->
+      <section
+        id="skills"
+        class="py-24 border-t border-slate-50 text-[10px] font-bold uppercase tracking-widest"
+      >
+        <div class="flex items-center gap-3 mb-16">
+          <div class="w-8 h-[2px] bg-rose-800"></div>
+          <h2
+            class="text-xs font-black uppercase tracking-widest text-slate-400"
+          >
+            Compétences
+          </h2>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center tracking-widest"
+        >
+          <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+            <i
+              data-lucide="database"
+              class="text-rose-800 w-8 h-8 mx-auto mb-6"
+            ></i>
+            <h3 class="font-bold text-lg mb-3 tracking-normal">
+              Bases de données
+            </h3>
+            <p class="text-slate-400 text-[9px] leading-relaxed">
+              SQL Server, PostgreSQL, Modélisation.
+            </p>
+          </div>
+          <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+            <i
+              data-lucide="bar-chart"
+              class="text-rose-800 w-8 h-8 mx-auto mb-6"
+            ></i>
+            <h3 class="font-bold text-lg mb-3 tracking-normal">
+              BI & Visualization
+            </h3>
+            <p class="text-slate-400 text-[9px] leading-relaxed">
+              Power BI, DAX, Qlik Sense.
+            </p>
+          </div>
+          <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+            <i
+              data-lucide="file-spreadsheet"
+              class="text-rose-800 w-8 h-8 mx-auto mb-6"
+            ></i>
+            <h3 class="font-bold text-lg mb-3 tracking-normal">
+              Data Engineering
+            </h3>
+            <p class="text-slate-400 text-[9px] leading-relaxed">
+              ETL (SSIS), DataWarehouse, Excel VBA.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!-- Section: Expérience -->
-        <section id="experience" class="py-24 border-t border-slate-50">
-            <div class="flex items-center gap-3 mb-16">
-                <div class="w-8 h-[2px] bg-blue-600"></div>
-                <h2 class="text-xs font-black uppercase tracking-widest text-slate-400">Expérience Professionnelle</h2>
-            </div>
-            <div class="space-y-12">
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Consultant Télécom</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">Orange, Lyon</p>
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal">Conception d’un système décisionnel pour le suivi du trafic réseaux. Flux ETL (extraction, nettoyage, transformation), SQL complexe et création de dashboards Power BI interactifs.</p>
-                </div>
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Data Analyst Transport</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">ONCF, Casablanca</p>
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal">Suivi d'activité et pilotage de performance. Conception de dashboards (Qlik Sense & SSRS) et supervision des flux ETL.</p>
-                </div>
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Consultant Data / Full Stack</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">Cdiscount, Maroc</p>
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal">Analyse e-commerce (trafic, conversion, ventes) et mise en place de reportings décisionnels pour le suivi de performance.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Section: Expérience -->
+      <section id="experience" class="py-24 border-t border-slate-50">
+        <div class="flex items-center gap-3 mb-16">
+          <div class="w-8 h-[2px] bg-rose-600"></div>
+          <h2
+            class="text-xs font-black uppercase tracking-widest text-slate-400"
+          >
+            Expérience Professionnelle
+          </h2>
+        </div>
+        <div class="space-y-12">
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Consultant Télécom
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-600 uppercase mb-4 tracking-wider"
+            >
+              Orange, Lyon
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal"
+            >
+              Conception d’un système décisionnel pour le suivi du trafic
+              réseaux. Flux ETL (extraction, nettoyage, transformation), SQL
+              complexe et création de dashboards Power BI interactifs.
+            </p>
+          </div>
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Data Analyst Transport
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-600 uppercase mb-4 tracking-wider"
+            >
+              ONCF, Casablanca
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal"
+            >
+              Suivi d'activité et pilotage de performance. Conception de
+              dashboards (Qlik Sense & SSRS) et supervision des flux ETL.
+            </p>
+          </div>
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Consultant Data / Full Stack
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-600 uppercase mb-4 tracking-wider"
+            >
+              Cdiscount, Maroc
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed max-w-2xl tracking-normal font-normal"
+            >
+              Analyse e-commerce (trafic, conversion, ventes) et mise en place
+              de reportings décisionnels pour le suivi de performance.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!-- Section: Formation -->
-        <section id="formation" class="py-24 border-t border-slate-50">
-            <div class="flex items-center gap-3 mb-16">
-                <div class="w-8 h-[2px] bg-blue-600"></div>
-                <h2 class="text-xs font-black uppercase tracking-widest text-slate-400">Diplômes et Formations</h2>
-            </div>
-            <div class="space-y-12">
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Certification Power BI Data Analyst Associate (PL-300)</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">Microsoft</p>
-                    <p class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal">Validation des compétences en préparation, modélisation, visualisation et analyse des données avec Power BI.</p>
-                </div>
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Diplôme d'Ingénieur Informatique</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">EMSI Casablanca</p>
-                    <p class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal">Option MIAGE - Spécialisation en gestion de données et informatique décisionnelle.</p>
-                </div>
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Diplôme de Technicien Spécialisé</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">ISTA Casablanca</p>
-                    <p class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal">Développement Informatique.</p>
-                </div>
-                <div class="border-l-2 border-slate-50 pl-8 pb-4">
-                    <h4 class="font-bold text-lg text-slate-900 tracking-normal">Baccalauréat Scientifique</h4>
-                    <p class="text-[11px] font-bold text-blue-600 uppercase mb-4 tracking-wider">Lycée Abderrahmane Belkorchi</p>
-                    <p class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal">Option SVT.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Section: Formation -->
+      <section id="formation" class="py-24 border-t border-slate-50">
+        <div class="flex items-center gap-3 mb-16">
+          <div class="w-8 h-[2px] bg-rose-800"></div>
+          <h2
+            class="text-xs font-black uppercase tracking-widest text-slate-400"
+          >
+            Diplômes et Formations
+          </h2>
+        </div>
+        <div class="space-y-12">
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Certification Power BI Data Analyst Associate (PL-300)
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-800 uppercase mb-4 tracking-wider"
+            >
+              Microsoft
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal"
+            >
+              Validation des compétences en préparation, modélisation,
+              visualisation et analyse des données avec Power BI.
+            </p>
+          </div>
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Diplôme d'Ingénieur Informatique
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-800 uppercase mb-4 tracking-wider"
+            >
+              EMSI Casablanca
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal"
+            >
+              Option MIAGE - Spécialisation en gestion de données et
+              informatique décisionnelle.
+            </p>
+          </div>
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Diplôme de Technicien Spécialisé
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-800 uppercase mb-4 tracking-wider"
+            >
+              ISTA Casablanca
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal"
+            >
+              Développement Informatique.
+            </p>
+          </div>
+          <div class="border-l-2 border-slate-50 pl-8 pb-4">
+            <h4 class="font-bold text-lg text-slate-900 tracking-normal">
+              Baccalauréat Scientifique
+            </h4>
+            <p
+              class="text-[11px] font-bold text-rose-800 uppercase mb-4 tracking-wider"
+            >
+              Lycée Abderrahmane Belkorchi
+            </p>
+            <p
+              class="text-slate-500 text-sm leading-relaxed tracking-normal font-normal"
+            >
+              Option SVT.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!-- Section: Contact -->
-        <section id="contact" class="py-24 border-t border-slate-50 text-center uppercase tracking-widest">
-            <h2 class="text-4xl font-black mb-4 tracking-tighter normal-case">Discutons de vos projets.</h2>
-            <p class="text-slate-500 mb-12 text-sm max-w-md mx-auto tracking-normal font-normal">"Passionnée par les données et toujours prête à relever de nouveaux défis. Échangeons sur vos futurs projets !"</p>
-            <div class="flex flex-col md:flex-row justify-center gap-12 font-bold text-[10px] text-slate-400">
-                <a href="mailto:wafaa.jemel1805@gmail.com" class="flex items-center justify-center gap-2 text-slate-900 hover:text-blue-600 transition-colors">
-                    <i data-lucide="mail" class="w-4 h-4"></i> Email Pro
-                </a>
-                <a href="https://www.linkedin.com/in/wafaa-jemel-316440142/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-slate-900 hover:text-blue-600 transition-colors">
-                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
-                </a>
-            </div>
-        </section>
-
+      <!-- Section: Contact -->
+      <section
+        id="contact"
+        class="py-24 border-t border-slate-50 text-center uppercase tracking-widest"
+      >
+        <h1 class="text-4xl font-black mb-4 tracking-tighter normal-case">
+          Discutons de vos projets.
+        </h1>
+        <p
+          class="text-slate-500 mb-12 text-sm max-w-md mx-auto tracking-normal font-normal"
+        >
+          "Passionnée par les données et toujours prête à relever de nouveaux
+          défis. Échangeons sur vos futurs projets !"
+        </p>
+        <div
+          class="flex flex-col md:flex-row justify-center gap-12 font-bold text-[10px] text-slate-400"
+        >
+          <a
+            href="mailto:wafaa.jemel1805@gmail.com"
+            class="flex items-center justify-center gap-2 text-slate-900 hover:text-rose-600 transition-colors"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i> Email Pro
+          </a>
+          <a
+            href="https://www.linkedin.com/in/wafaa-jemel-316440142/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 text-slate-900 hover:text-rose-600 transition-colors"
+          >
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+        </div>
+      </section>
     </main>
 
     <footer class="py-12 border-t border-slate-50 text-center bg-slate-50/50">
-        <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em]">© 2026 Wafaa Jemel — Portfolio BI Data Analyst</p>
+      <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em]">
+        © 2026 Wafaa Jemel — Portfolio BI Data Analyst
+      </p>
     </footer>
 
-    <!-- Music Player -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <audio id="bg-music" src="https://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3" loop></audio>
-        <button id="music-toggle" class="bg-white/80 backdrop-blur-md p-4 rounded-full shadow-2xl border border-slate-100 ring-4 ring-blue-50 hover:bg-white transition-all group" title="Jouer une musique d'ambiance (Piano)">
-            <i data-lucide="volume-x" id="music-icon-off" class="w-6 h-6 text-slate-400 group-hover:text-blue-600"></i>
-            <i data-lucide="volume-2" id="music-icon-on" class="w-6 h-6 text-blue-600 hidden animate-pulse"></i>
-        </button>
-    </div>
-
     <script>
-        // Init Lucide Icons
-        lucide.createIcons();
+      // Init Lucide Icons
+      lucide.createIcons();
 
-        // Smooth scroll for anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = 80;
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = target.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
+      // Smooth scroll for anchors
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const offset = 80;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = target.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      function downloadCV() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Header
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(24);
+        doc.text("WAFAA JEMEL", 20, 25);
+
+        doc.setFontSize(14);
+        doc.setTextColor(225, 29, 72); // Rose-600
+        doc.text("BI Data Analyst | Power BI", 20, 35);
+
+        doc.setDrawColor(200, 200, 200);
+        doc.line(20, 40, 190, 40);
+
+        // Contact
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text("Email: wafaa.jemel1805@gmail.com", 20, 50);
+        doc.text("LinkedIn: linkedin.com/in/wafaa-jemel-316440142/", 20, 55);
+
+        // Abstract
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.setTextColor(0, 0, 0);
+        doc.text("PROFIL PROFESSIONNEL", 20, 70);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        const profilDesc =
+          "Analyste de données spécialisée en informatique décisionnelle avec plus de 3 ans d'expérience sur Power BI, SQL et la modélisation décisionnelle. Expertise en transformation de données complexes en insights stratégiques.";
+        const splitProfil = doc.splitTextToSize(profilDesc, 170);
+        doc.text(splitProfil, 20, 80);
+
+        // Skills
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("COMPÉTENCES", 20, 105);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "- Bases de données: SQL Server, PostgreSQL, Modélisation (Star Schema)",
+          25,
+          115,
+        );
+        doc.text("- BI: Power BI (DAX, PowerQuery), Qlik Sense, SSRS", 25, 122);
+        doc.text(
+          "- Data Engineering: ETL (SSIS), DataWarehouse, Excel VBA",
+          25,
+          129,
+        );
+
+        // Experience
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("EXPÉRIENCE PROFESSIONNELLE", 20, 145);
+
+        const experiences = [
+          {
+            title: "Consultant Télécom - Orange, Lyon",
+            desc: "Conception d'un système décisionnel pour le suivi du trafic réseaux (ETL, SQL, Power BI).",
+          },
+          {
+            title: "Data Analyst Transport - ONCF, Casablanca",
+            desc: "Pilotage de performance via dashboards (Qlik Sense & SSRS) et supervision flux ETL.",
+          },
+          {
+            title: "Consultant Data - Cdiscount, Maroc",
+            desc: "Analyse e-commerce et mise en place de reportings décisionnels.",
+          },
+        ];
+
+        let yPos = 155;
+        experiences.forEach((exp) => {
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text(exp.title, 20, yPos);
+          yPos += 7;
+          doc.setFont("helvetica", "normal");
+          const splitDesc = doc.splitTextToSize(exp.desc, 170);
+          doc.text(splitDesc, 20, yPos);
+          yPos += 15;
+        });
+
+        // Education
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("FORMATION", 20, 215);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "Certification Power BI Data Analyst Associate (PL-300) - Microsoft",
+          20,
+          225,
+        );
+        doc.text(
+          "Diplôme d'Ingénieur Informatique - EMSI Casablanca (Spécialité MIAGE)",
+          20,
+          232,
+        );
+        doc.text(
+          "Technicien Spécialisé en Développement - ISTA Casablanca",
+          20,
+          239,
+        );
+        doc.text(
+          "Baccalauréat Scientifique (Option SVT) - Lycée Abderrahmane Belkorchi",
+          20,
+          246,
+        );
+
+        doc.save("CV_Wafaa_Jemel.pdf");
+      }
+
+      // Splash Screen Logic
+      const splash = document.getElementById("splash");
+      const splashContent = document.getElementById("splash-content");
+      const enterBtn = document.getElementById("enter-btn");
+
+      // Show splash content
+      setTimeout(() => {
+        splashContent.classList.remove("opacity-0", "translate-y-5");
+      }, 300);
+
+      enterBtn.addEventListener("click", () => {
+        splash.style.opacity = "0";
+        setTimeout(() => (splash.style.display = "none"), 500);
+      });
+
+      // Scroll Spy Logic
+      const sections = document.querySelectorAll("section");
+      const navItems = document.querySelectorAll("nav .md\\:flex a");
+
+      const scrollObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+              navItems.forEach((item) => {
+                item.classList.remove("text-rose-800", "border-rose-800");
+                item.classList.add("text-slate-400", "border-transparent");
+                if (item.getAttribute("href") === `#${id}`) {
+                  item.classList.remove("text-slate-400", "border-transparent");
+                  item.classList.add("text-rose-800", "border-rose-800");
                 }
-            });
-        });
-
-        function downloadCV() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            // Header
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(24);
-            doc.text('WAFAA JEMEL', 20, 25);
-            
-            doc.setFontSize(14);
-            doc.setTextColor(37, 99, 235); // Blue-600
-            doc.text('BI Data Analyst | Power BI', 20, 35);
-            
-            doc.setDrawColor(200, 200, 200);
-            doc.line(20, 40, 190, 40);
-            
-            // Contact
-            doc.setFontSize(10);
-            doc.setTextColor(100, 100, 100);
-            doc.text('Email: wafaa.jemel1805@gmail.com', 20, 50);
-            doc.text('LinkedIn: linkedin.com/in/wafaa-jemel-316440142/', 20, 55);
-            
-            // Abstract
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            doc.setTextColor(0, 0, 0);
-            doc.text('PROFIL PROFESSIONNEL', 20, 70);
-            
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(11);
-            const profilDesc = "Analyste de données spécialisée en informatique décisionnelle avec plus de 3 ans d'expérience sur Power BI, SQL et la modélisation décisionnelle. Expertise en transformation de données complexes en insights stratégiques.";
-            const splitProfil = doc.splitTextToSize(profilDesc, 170);
-            doc.text(splitProfil, 20, 80);
-            
-            // Skills
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            doc.text('COMPÉTENCES', 20, 105);
-            
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(11);
-            doc.text('- Bases de données: SQL Server, PostgreSQL, Modélisation (Star Schema)', 25, 115);
-            doc.text('- BI: Power BI (DAX, PowerQuery), Qlik Sense, SSRS', 25, 122);
-            doc.text('- Data Engineering: ETL (SSIS), DataWarehouse, Excel VBA', 25, 129);
-            
-            // Experience
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            doc.text('EXPÉRIENCE PROFESSIONNELLE', 20, 145);
-            
-            const experiences = [
-                { title: "Consultant Télécom - Orange, Lyon", desc: "Conception d'un système décisionnel pour le suivi du trafic réseaux (ETL, SQL, Power BI)." },
-                { title: "Data Analyst Transport - ONCF, Casablanca", desc: "Pilotage de performance via dashboards (Qlik Sense & SSRS) et supervision flux ETL." },
-                { title: "Consultant Data - Cdiscount, Maroc", desc: "Analyse e-commerce et mise en place de reportings décisionnels." }
-            ];
-            
-            let yPos = 155;
-            experiences.forEach(exp => {
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(11);
-                doc.text(exp.title, 20, yPos);
-                yPos += 7;
-                doc.setFont('helvetica', 'normal');
-                const splitDesc = doc.splitTextToSize(exp.desc, 170);
-                doc.text(splitDesc, 20, yPos);
-                yPos += 15;
-            });
-            
-            // Education
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            doc.text('FORMATION', 20, 215);
-            
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(11);
-            doc.text("Certification Power BI Data Analyst Associate (PL-300) - Microsoft", 20, 225);
-            doc.text("Diplôme d'Ingénieur Informatique - EMSI Casablanca (Spécialité MIAGE)", 20, 232);
-            doc.text("Technicien Spécialisé en Développement - ISTA Casablanca", 20, 239);
-            doc.text("Baccalauréat Scientifique (Option SVT) - Lycée Abderrahmane Belkorchi", 20, 246);
-            
-            doc.save('CV_Wafaa_Jemel.pdf');
-        }
-
-        // Splash Screen Logic
-        const splash = document.getElementById('splash');
-        const splashContent = document.getElementById('splash-content');
-        const enterBtn = document.getElementById('enter-btn');
-        const music = document.getElementById('bg-music');
-        const musicToggle = document.getElementById('music-toggle');
-        const iconOn = document.getElementById('music-icon-on');
-        const iconOff = document.getElementById('music-icon-off');
-        let isPlaying = false;
-
-        // Show splash content
-        setTimeout(() => {
-            splashContent.classList.remove('opacity-0', 'translate-y-5');
-        }, 300);
-
-        enterBtn.addEventListener('click', () => {
-            splash.style.opacity = '0';
-            setTimeout(() => splash.style.display = 'none', 500);
-            
-            // Try play music
-            music.play().then(() => {
-                isPlaying = true;
-                iconOn.classList.remove('hidden');
-                iconOff.classList.add('hidden');
-                musicToggle.title = "Couper la musique";
-            }).catch(e => console.log("Audio play failed"));
-        });
-
-        musicToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!music.paused) {
-                music.pause();
-                iconOn.classList.add('hidden');
-                iconOff.classList.remove('hidden');
-                musicToggle.title = "Jouer une musique d'ambiance (Piano)";
-            } else {
-                music.play().then(() => {
-                    iconOn.classList.remove('hidden');
-                    iconOff.classList.add('hidden');
-                    musicToggle.title = "Couper la musique";
-                }).catch(e => console.log("Play failed"));
+              });
             }
-        });
+          });
+        },
+        {
+          rootMargin: "-50% 0px -50% 0px",
+        },
+      );
 
-        // Scroll Spy Logic
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('nav .md\\:flex a');
-        
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navItems.forEach(item => {
-                        item.classList.remove('text-blue-600', 'border-blue-600');
-                        item.classList.add('text-slate-400', 'border-transparent');
-                        if (item.getAttribute('href') === `#${id}`) {
-                            item.classList.remove('text-slate-400', 'border-transparent');
-                            item.classList.add('text-blue-600', 'border-blue-600');
-                        }
-                    });
-                }
-            });
-        }, {
-            rootMargin: '-50% 0px -50% 0px'
-        });
-
-        sections.forEach(section => scrollObserver.observe(section));
+      sections.forEach((section) => scrollObserver.observe(section));
     </script>
-</body>
+  </body>
 </html>

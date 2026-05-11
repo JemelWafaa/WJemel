@@ -3,7 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+<<<<<<< HEAD
   "homepage": "https://jemelwafaa.github.io/WJemel/",
+=======
+  "homepage": "https://jemelwafaa.github.io/WJemel",
+>>>>>>> 240f1ba (fix deploy)
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
