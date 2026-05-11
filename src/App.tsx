@@ -140,11 +140,7 @@ export default function App() {
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
-    doc.text(
-      "Certification Power BI Data Analyst Associate (PL-300) - Microsoft",
-      20,
-      225,
-    );
+    doc.text("Formation Power BI Data Analyst", 20, 225);
     doc.text(
       "Diplôme d'Ingénieur Informatique - EMSI Casablanca (Spécialité MIAGE)",
       20,
@@ -425,8 +421,8 @@ export default function App() {
           <div className="space-y-12">
             {[
               {
-                title: "Formation Power BI Data Analyst ",
-                school: "Microsoft",
+                title: "Formation Power BI Data Analyst",
+                school: "Eureka Services",
                 desc: "Validation des compétences en préparation, modélisation, visualisation et analyse des données avec Power BI.",
               },
               {
